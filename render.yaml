@@ -1,0 +1,17 @@
+# Placer le contenu du dossier du jeu à la racine du dépôt Git.
+services:
+  - type: web
+    name: horizon-duel
+    runtime: node
+    plan: free
+    region: frankfurt
+    numInstances: 1
+    autoDeployTrigger: off
+    buildCommand: node --test tests/*.test.mjs
+    startCommand: node server.mjs
+    healthCheckPath: /__voxel_health
+    envVars:
+      - key: NODE_VERSION
+        value: 24.21.0
+      - key: HOST
+        value: 0.0.0.0
